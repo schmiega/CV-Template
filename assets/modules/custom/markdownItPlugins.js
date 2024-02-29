@@ -34,6 +34,7 @@ export function fontAwesomePlugin(md) {
     });
   });
 }
+
 export function sectionPlugin(tag, sectionClass, subTag, subSectionClass) {
   return function (md) {
     let inSection = false;
@@ -47,6 +48,8 @@ export function sectionPlugin(tag, sectionClass, subTag, subSectionClass) {
 
     md.renderer.rules.heading_open = function (tokens, idx, options, env) {
       let result = "";
+      let classes = tokens[idx].attrGet("class");
+
       if (tokens[idx].tag === tag) {
         if (inSubSection) {
           result += "</div>";
@@ -55,13 +58,15 @@ export function sectionPlugin(tag, sectionClass, subTag, subSectionClass) {
         if (inSection) {
           result += "</div>";
         }
-        result += '<div class="' + sectionClass + '">';
+        // If the token has classes, add them to the section
+        result += '<div class="' + sectionClass + (classes ? " " + classes : "") + '">';
         inSection = true;
       } else if (tokens[idx].tag === subTag) {
         if (inSubSection) {
           result += "</div>";
         }
-        result += '<div class="' + subSectionClass + '">';
+        // If the token has classes, add them to the subsection
+        result += '<div class="' + subSectionClass + (classes ? " " + classes : "") + '">';
         inSubSection = true;
       }
       result += defaultRender(tokens, idx, options, env);
