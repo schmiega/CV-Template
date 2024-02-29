@@ -1,14 +1,15 @@
+import cheerio from "cheerio";
 import markdownIt from "markdown-it";
 import markdownItAttrs from "markdown-it-attrs";
 import markdownItAnchor from "markdown-it-anchor";
-import { fontAwesomePlugin, sectionPlugin } from "./markdownItPlugins";
+import * as plugins from "./markdownItPlugins";
 
 /**
  * Reads the CV file based on the specified language.
  * @param {string} lang - The language of the CV file.
  * @param {function} callback - The callback function to handle the result.
  */
-async function readMarkdown(lang) {
+export async function readMarkdown(lang) {
   try {
     const response = await fetch("cv-files/" + lang + ".md");
     const markdownContent = await response.text();
@@ -24,17 +25,35 @@ async function readMarkdown(lang) {
  * @param {string} markdownContent - The markdown content to be rendered.
  * @returns {string} - The rendered HTML content.
  */
-function renderMarkdown(markdownContent) {
+export function renderMarkdown(markdownContent) {
   var md = markdownIt()
     .use(markdownItAttrs)
     .use(markdownItAnchor, {
       slugify: (s) =>
         encodeURIComponent(String(s).trim().toLowerCase().replace(/\s+/g, "-")),
     })
-    .use(sectionPlugin('h2', 'section', 'h3', 'subsection'))
-    .use(fontAwesomePlugin);
+    .use(plugins.section("h2", "section", "h3", "subsection"))
+    .use(plugins.fontAwesome);
 
-  return md.render(markdownContent);
+  let htmlContent = md.render(markdownContent);
+
+  return wrapTimelineMeta(htmlContent);
 }
 
-export { renderMarkdown, readMarkdown };
+function wrapTimelineMeta(htmlContent) {
+  const load = cheerio.load;
+  const $ = load(htmlContent);
+  $(".timeline .subsection").each(function () {
+    const $this = $(this);
+    const $h3 = $this.find("h3");
+    let $ul = $this.find("ul:has(.place), ul:has(.time)");
+    const $wrapper = $('<div class="timeline-meta"></div>');
+    $wrapper.append($h3);
+    if ($ul.length > 0) {
+      $wrapper.append($ul);
+    }
+    $this.append($wrapper);
+  });
+
+  return $.html();
+}

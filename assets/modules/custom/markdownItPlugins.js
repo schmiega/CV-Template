@@ -1,4 +1,4 @@
-export function fontAwesomePlugin(md) {
+export function fontAwesome(md) {
   md.core.ruler.push("font_awesome", function (state) {
     state.tokens.forEach(function (token) {
       if (token.type === "inline" && token.children) {
@@ -35,7 +35,7 @@ export function fontAwesomePlugin(md) {
   });
 }
 
-export function sectionPlugin(tag, sectionClass, subTag, subSectionClass) {
+export function section(tag, sectionClass, subTag, subSectionClass) {
   return function (md) {
     let inSection = false;
     let inSubSection = false;
@@ -59,14 +59,19 @@ export function sectionPlugin(tag, sectionClass, subTag, subSectionClass) {
           result += "</div>";
         }
         // If the token has classes, add them to the section
-        result += '<div class="' + sectionClass + (classes ? " " + classes : "") + '">';
+        result +=
+          '<div class="' + sectionClass + (classes ? " " + classes : "") + '">';
         inSection = true;
       } else if (tokens[idx].tag === subTag) {
         if (inSubSection) {
           result += "</div>";
         }
         // If the token has classes, add them to the subsection
-        result += '<div class="' + subSectionClass + (classes ? " " + classes : "") + '">';
+        result +=
+          '<div class="' +
+          subSectionClass +
+          (classes ? " " + classes : "") +
+          '">';
         inSubSection = true;
       }
       result += defaultRender(tokens, idx, options, env);

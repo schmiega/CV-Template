@@ -1,8 +1,8 @@
 ## :fa-building: Berufserfahrung { .timeline }
 
-### Datenanalyst, Business-Abteilung
+### Access Microfinance Holding AG
 
-#### Access Microfinance Holding AG
+#### Datenanalyst, Business-Abteilung
 
 - Nov 2022 - aktuell { .time }
 - 🇩🇪 Berlin, Deutschland { .place }
@@ -13,9 +13,9 @@ Werkstudent. Zu den Aufgaben gehören:
 - Konzeption und Durchführung von Projekten in Business Analytics und datengetriebener Entscheidungsfindung
 - Zusammenarbeit mit Spezialisten und Managern von Banken im Access-Netzwerk
 
-### Praktikant
+### AccèsBanque Madagaskar
 
-#### AccèsBanque Madagaskar
+#### Praktikant
 
 - Aug 2022 - Okt 2022 { .time }
 - 🇲🇬 Antananarivo, Madagaskar { .place }
