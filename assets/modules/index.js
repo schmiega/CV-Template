@@ -32,7 +32,7 @@ readMarkdown(lang)
       .insertAdjacentHTML("beforeend", cvContent);
 
     // Create navigation menu in left panel
-    var leftPanel = document.getElementById("left-panel");
+    var leftPanel = document.getElementById("panel");
     createNav(leftPanel);
 
     return displayProfile(); // Assuming displayProfile returns a Promise
@@ -53,4 +53,4 @@ readMarkdown(lang)
   });
 
 // Create language menu in left panel
-createLangMenu(document.getElementById("left-panel"));
+createLangMenu(document.getElementById("panel"));

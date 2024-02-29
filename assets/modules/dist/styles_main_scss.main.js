@@ -14,7 +14,7 @@
   \********************************************************************************************************/
 /***/ (() => {
 
-eval("throw new Error(\"Module build failed (from ./node_modules/sass-loader/dist/cjs.js):\\nThe target selector was not found.\\nUse \\\"@extend fw-bold !optional\\\" to avoid this error.\\n   ╷\\n31 │   @extend fw-bold;\\n   │   ^^^^^^^^^^^^^^^\\n   ╵\\n  ../styles/timeline.scss 31:3  root stylesheet\");\n\n//# sourceURL=webpack:///../styles/main.scss?./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js");
+eval("throw new Error(\"Module build failed (from ./node_modules/sass-loader/dist/cjs.js):\\nCan't find stylesheet to import.\\n  ╷\\n2 │ @import \\\"panel\\\";\\n  │         ^^^^^^^\\n  ╵\\n  ../styles/main.scss 2:9  root stylesheet\");\n\n//# sourceURL=webpack:///../styles/main.scss?./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js");
 
 /***/ }),
 

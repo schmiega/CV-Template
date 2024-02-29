@@ -1,14 +1,17 @@
 {
-	"version": "2.0.0",
-	"tasks": [
-		{
-			"type": "npm",
-			"script": "build",
-			"path": "assets/modules",
-			"group": "build",
-			"problemMatcher": [],
-			"label": "npm: build - assets/modules",
-			"detail": "webpack"
-		}
-	]
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "npm",
+      "script": "build",
+      "path": "assets/modules",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": [],
+      "label": "npm: build - assets/modules",
+      "detail": "webpack"
+    }
+  ]
 }
