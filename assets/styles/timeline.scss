@@ -1,10 +1,18 @@
+@import "../modules/node_modules/bootstrap/scss/bootstrap";
+
 $padding: 1em;
-$metaH3size: 1.25em;
-$h4size: 1.5em;
+$metaH3size: 1.125em; // h3 only in .timeline-meta
+$h4size: 1.25em;
+$marker-type: circle; // square or circle. Square is rotated 45 degrees.
 
 .section.timeline {
   --line-width: 3px;
   --marker-width: 1em;
+
+  // Calculation for the top position of the marker
+  $marker-top: calc(
+    calc(-1 * var(--marker-width) / #{sqrt(2)} / 2 + $h4size / 2)
+  );
 
   p,
   h3,
@@ -17,6 +25,37 @@ $h4size: 1.5em;
 
   h2 {
     margin-bottom: 0.5em;
+  }
+
+  h4 {
+    font-size: $h4size;
+  }
+
+  .time,
+  .place {
+    @extend .text-muted;
+    text-transform: uppercase;
+    font-size: 0.75em;
+    // Box
+    margin: 0.125em 0;
+    padding: 0 0.5em;
+    border: 1px solid $light-text-emphasis;
+    border-radius: 0.25em;
+  }
+
+  .time::before,
+  .place::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    margin-right: 0.5em;
+  }
+
+  .time::before {
+    content: "\f133"; // .fa .calendar
+  }
+
+  .place::before {
+    content: "\f3c5"; // .fa .location-dot
   }
 
   .subsection {
@@ -35,40 +74,41 @@ $h4size: 1.5em;
     }
 
     &::before {
+      // Timeline marker
       content: "";
       background-color: $primary;
       width: var(--marker-width);
       height: var(--marker-width);
       position: absolute;
-      top: calc(
-        (-1 * var(--marker-width) / 2) + (#{$padding} / 4) + ($h4size / 2)
-      );
+      top: $marker-top;
       left: calc((-1 * var(--marker-width) / 2) - (var(--line-width) / 2));
-      transform: rotate(45deg);
+      @if $marker-type == square {
+        transform: rotate(45deg);
+      } @else {
+        border-radius: 50%;
+      }
       display: block;
+      z-index: 1;
     }
 
     &:first-of-type::after {
+      // Overlay the border above the first marker
       content: "";
-      background-color: red;
+      background-color: $body-bg;
       width: var(--line-width);
       height: calc(
-        (var(--marker-width) * (#{sqrt(2)} / 2 - #{sqrt(2)})) +
-          (#{$padding} / 4) + ($h4size / 2)
-      );
+        $marker-top + var(--marker-width) / 4
+      ); // marker-width/4 to cover visible area at the top of the marker symbol
       position: absolute;
       top: 0;
       left: calc(-1 * var(--line-width));
-    }
-
-    h4 {
-      font-size: $h4size;
     }
 
     .timeline-meta {
       order: -1;
 
       @media screen and (min-width: 768px) {
+        display: flex;
         position: absolute;
         text-align: right;
         left: 0;
@@ -84,26 +124,45 @@ $h4size: 1.5em;
       }
 
       h3 {
+        width: 100%;
         font-size: $metaH3size;
+        order: -1;
       }
 
-      ul {
-        margin-block-start: 0;
-        margin-block-end: 0;
-        margin: 0;
-        padding: 0;
-        list-style: none;
-        display: flex;
-        flex-wrap: wrap;
-        width: 100%;
-        @media screen and (min-width: 768px) {
+      @media screen and (min-width: 768px) {
+        /* On large screens, display metadata items inline */
+        ul {
           justify-content: flex-end;
+          display: contents;
         }
+        .time {
+          order: 0;
+        }
+        .place {
+          order: -2;
+        }
+      }
 
-        li {
-          margin-left: 1em;
-          flex-basis: auto;
+      @media screen and (max-width: 768px) {
+        /* On small screens, display li's inline */
+        ul {
+          margin-block-start: 0;
+          margin-block-end: 0;
+          margin: 0;
+          padding: 0;
+          list-style: none;
+          display: flex;
+          flex-wrap: wrap;
+          width: 100%;
+          order: 0 !important;
         }
+      }
+
+      li:not(li:first-of-type) {
+        @media screen and (max-width: 768px) {
+          margin-left: 1em;
+        }
+        flex-basis: auto;
       }
     }
   }

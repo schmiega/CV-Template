@@ -5,7 +5,7 @@
 #### Datenanalyst, Business-Abteilung
 
 - Nov 2022 - aktuell { .time }
-- 🇩🇪 Berlin, Deutschland { .place }
+- Berlin 🇩🇪 { .place }
 
 Werkstudent. Zu den Aufgaben gehören:
 
@@ -18,13 +18,13 @@ Werkstudent. Zu den Aufgaben gehören:
 #### Praktikant
 
 - Aug 2022 - Okt 2022 { .time }
-- 🇲🇬 Antananarivo, Madagaskar { .place }
+- Antananarivo 🇲🇬 { .place }
 
 Praktikant in der Kreditabteilung.
 
-### Studentischer Mitarbeiter
+### Green Campus, Universität Bayreuth
 
-#### Green Campus, Universität Bayreuth
+#### Studentischer Mitarbeiter
 
 - Dez 2019 - Sep 2020 { .time }
 - 🇩🇪 Bayreuth, Deutschland { .place }
@@ -34,9 +34,9 @@ Nachhaltigkeitsbüro der Universität. Projektbezogene Aufgaben wie z.B.:
 - Verfassen von Förderanträgen
 - Implementierung von CO2- und Nährwertinformationen in den Mensen
 
-### Anwendungsentwickler
+### Girona Software GmbH
 
-#### Girona Software GmbH
+#### Anwendungsentwickler
 
 - Jan 2019 - Aug 2019 { .time }
 - 🇩🇪 Berlin, Deutschland { .place }

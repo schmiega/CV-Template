@@ -14,7 +14,7 @@
   \********************************************************************************************************/
 /***/ (() => {
 
-eval("throw new Error(\"Module build failed (from ./node_modules/sass-loader/dist/cjs.js):\\nUndefined operation \\\"1.4142135624 * var(--marker-width)\\\".\\n   ╷\\n57 │           ($h4size / 2) - #{sqrt(2) * var(--marker-width)}\\n   │                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n   ╵\\n  ../styles/timeline.scss 57:29  @import\\n  ../styles/main.scss 3:9        root stylesheet\");\n\n//# sourceURL=webpack:///../styles/main.scss?./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js");
+eval("throw new Error(\"Module build failed (from ./node_modules/sass-loader/dist/cjs.js):\\nThe target selector was not found.\\nUse \\\"@extend .thumbnail !optional\\\" to avoid this error.\\n   ╷\\n35 │     @extend .thumbnail;\\n   │     ^^^^^^^^^^^^^^^^^^\\n   ╵\\n  ../styles/timeline.scss 35:5  root stylesheet\");\n\n//# sourceURL=webpack:///../styles/main.scss?./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js");
 
 /***/ }),
 
