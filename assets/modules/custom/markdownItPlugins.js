@@ -78,6 +78,21 @@ export function section(tag, sectionClass, subTag, subSectionClass) {
       return result;
     };
 
+    // Close the section and subsection at an hr element
+    md.renderer.rules.hr = function () {
+      let result = "";
+      if (inSubSection) {
+        result += "</div>";
+        inSubSection = false;
+      }
+      if (inSection) {
+        result += "</div>";
+        inSection = false;
+      }
+      result += "<hr>";
+      return result;
+    };
+
     // Close the section and subsection at the end of the document, if one is open
     md.renderer.rules.eof = function () {
       let result = "";

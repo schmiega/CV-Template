@@ -1,17 +1,37 @@
+$padding: 1em;
+$metaH3size: 1.25em;
+$h4size: 1.5em;
+
 .section.timeline {
   --line-width: 3px;
   --marker-width: 1em;
-  --padding: 1em;
+
+  p,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-bottom: 0;
+    margin-block-end: 0.25em;
+  }
+
+  h2 {
+    margin-bottom: 0.5em;
+  }
 
   .subsection {
     position: relative;
     border-left: var(--line-width) solid $primary;
-    padding: 0 var(--padding) var(--padding) var(--padding);
+    padding: 0 $padding $padding $padding;
     display: flex;
     flex-direction: column;
 
     @media screen and (min-width: 768px) {
       margin-left: 33vw;
+    }
+
+    &:last-of-type {
+      padding-bottom: 0;
     }
 
     &::before {
@@ -20,10 +40,29 @@
       width: var(--marker-width);
       height: var(--marker-width);
       position: absolute;
-      top: calc(-1 * var(--marker-width) / 2);
-      left: calc(-1 * var(--marker-width) / 2 - var(--line-width) / 2);
+      top: calc(
+        (-1 * var(--marker-width) / 2) + (#{$padding} / 4) + ($h4size / 2)
+      );
+      left: calc((-1 * var(--marker-width) / 2) - (var(--line-width) / 2));
       transform: rotate(45deg);
       display: block;
+    }
+
+    &:first-of-type::after {
+      content: "";
+      background-color: red;
+      width: var(--line-width);
+      height: calc(
+        (var(--marker-width) * (#{sqrt(2)} / 2 - #{sqrt(2)})) +
+          (#{$padding} / 4) + ($h4size / 2)
+      );
+      position: absolute;
+      top: 0;
+      left: calc(-1 * var(--line-width));
+    }
+
+    h4 {
+      font-size: $h4size;
     }
 
     .timeline-meta {
@@ -32,12 +71,20 @@
       @media screen and (min-width: 768px) {
         position: absolute;
         text-align: right;
-        left: 0; // Adjust this value as needed
-        padding-right: var(--padding);
+        left: 0;
+        padding-right: $padding;
         transform: translateX(-100%);
-        max-width: calc(33vw - var(--padding));
+        max-width: calc(33vw - $padding);
         display: flex;
         flex-direction: column-reverse;
+        justify-content: center;
+        height: 100%;
+        max-height: 100%;
+        overflow: hidden;
+      }
+
+      h3 {
+        font-size: $metaH3size;
       }
 
       ul {
@@ -54,7 +101,7 @@
         }
 
         li {
-          margin-left: 1em; // add some space between the li elements
+          margin-left: 1em;
           flex-basis: auto;
         }
       }
