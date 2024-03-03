@@ -2,6 +2,7 @@
 import { readMarkdown, renderMarkdown } from "./custom/reader.js";
 import { createLangMenu, createNav } from "./custom/nav.js";
 import { displayName, displayProfile } from "./custom/profile.js";
+import ProgressBar from "progressbar.js";
 
 // Import custom styles
 import("../styles/main.scss");
@@ -58,3 +59,25 @@ readMarkdown(lang)
 
 // Create language menu in left panel
 createLangMenu(document.getElementById("panel"));
+
+// Add ProgressBar.js to skills
+document.querySelectorAll(".card-body").forEach(function (cardBody) {
+  const progressElem = cardBody.querySelector(".progress-bar");
+  const percentage = parseInt(progressElem.dataset.percent); // Read from data-percent attribute
+  const label = progressElem.querySelector(".progress-label").textContent;
+  console.log(label);
+
+  // Access SCSS color from CSS variable
+  const progressColor = getComputedStyle(progressElem).getPropertyValue(
+    "--bar-color"
+  );
+
+  const progressBar = new ProgressBar.Circle(progressElem, {
+    color: progressColor,
+    strokeWidth: 4,
+    trailWidth: 1,
+    easing: "easeInOut",
+    duration: 1400,
+  });
+  progressBar.animate(progressValue / 100);
+});

@@ -39,7 +39,7 @@ export function renderMarkdown(markdownContent) {
   // Apply HTML Plugins to output
   let html = md.render(markdownContent);
   html = htmlPlugin.wrapTimelineMeta(html);
-  html = htmlPlugin.wrapCardBody(html);
+  html = htmlPlugin.wrapCards(html);
 
   return html;
 }

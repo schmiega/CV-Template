@@ -17,71 +17,56 @@ export function wrapTimelineMeta(html) {
   return $.html();
 }
 
-export function wrapCardBody(html) {
+export function wrapCards(html) {
   const $ = load(html);
-  let isSkills = false;
 
   // Add a grid to cards and skills sections
   const sections = $(".cards, .skills");
   sections.each(function () {
-    // Create a wrapper for the h2 and its content
-    const h2Wrapper = $(this).find("h2").clone(); // Clone the h2 element
-    const isSkills = $(this).hasClass("skills");
-
+    const h2 = $(this).find("h2").clone(); // Clone the h2 element
     // Move section content except h2
     const content = $(this).children().not("h2");
     $(this).empty().append("<div class='row'></div>");
     $(this).find(".row").append(content);
-
-    // Append h2 wrapper to the section element
-    $(this).prepend(h2Wrapper);
+    // Append h2 to section element
+    $(this).prepend(h2);
   });
 
   // Wrap card contents in card-body
-  const cards = $(".cards .subsection, .skills .subsection");
+  const cards = $(".cards .subsection");
   cards.each(function () {
-    const $h3 = $(this).find("h3");
     $(this).wrap("<div class='card'></div>");
+    const $h3 = $(this).find("h3");
     $h3.addClass("card-header").prependTo($(this).parent());
     $(this).removeClass("subsection").addClass("card-body");
-    // Build progress circle using separate function
-    if (isSkills) {
-      buildProgressCircle($(this));
-    }
+  });
+  // Wrap skill contents in card-body
+  const skills = $(".skills .subsection");
+  skills.each(function () {
+    $(this).wrap("<div class='card skill'></div>");
+    const $h3 = $(this).find("h3");
+    $h3.addClass("card-header").prependTo($(this).parent());
+    $(this).removeClass("subsection").addClass("card-body");
+  });
+
+  // Add progress bar to skills
+  const skillElems = $(".skill");
+  skillElems.each(function () {
+    const $ul = $(this).find("ul:first-of-type");
+    const label = $ul.find("li").first().contents().toString().trim();
+    const percent = parseInt(
+      // Assumes notation x% or x (% implied)
+      $ul.find("li").last().contents().toString().replace("%", "")
+    );
+    console.log(label, percent);
+
+    const labelNode = `<span class="progress-label">${label}</span>`;
+    const progressNode = `<div class="progress-bar" role="progressbar" \
+                          data-percent="${percent}" aria-valuenow="${percent}" \
+                          aria-valuemin="0" aria-valuemax="100">${labelNode}</div>`;
+    $(this).find(".card-body").append(progressNode);
+    $ul.remove();
   });
 
   return $.html();
 }
-
-function buildProgressCircle(card) {
-  const $ = load(card); // Assuming load() function is available
-  const label = $("ul li:first-child", card).text();
-  const percent = parseInt($("ul li:last-child", card).text().replace("%", ""));
-
-  // Ensure percentage is within valid range
-  const progress = Math.max(0, Math.min(percent, 100));
-
-  // Create a container for the progress circle
-  const progressContainer = $("<div class='progress-circle'></div>");
-  card.find(".card-body").append(progressContainer);
-
-  // Customize the circle with progressbar.js (replace with your actual usage)
-  ProgressBar.Circle(progressContainer, {
-    color: "#3e95cd",
-    strokeWidth: 5,
-    trailWidth: 1,
-    easing: "easeInOut",
-    duration: 1400,
-    text: {
-      value: `${progress}%`,
-      // Adjust positioning as needed
-      className: "progress-text",
-      style: {
-        fontSize: "1rem",
-        fontWeight: "bold",
-        lineHeight: "14px",
-      },
-    },
-  }).animate(progress);
-}
-

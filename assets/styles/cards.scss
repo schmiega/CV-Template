@@ -14,6 +14,10 @@
   //   max-width: min(30em, 100%);
 }
 
+.progress-bar  {
+    --bar-color: $primary;
+}
+
 .section.cards,
 .section.skills {
   .row {
