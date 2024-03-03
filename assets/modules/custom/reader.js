@@ -1,8 +1,8 @@
-import cheerio from "cheerio";
 import markdownIt from "markdown-it";
 import markdownItAttrs from "markdown-it-attrs";
 import markdownItAnchor from "markdown-it-anchor";
-import * as plugins from "./markdownItPlugins";
+import * as mdPlugin from "./markdownItPlugins";
+import * as htmlPlugin from "./htmlPlugins";
 
 /**
  * Reads the CV file based on the specified language.
@@ -26,34 +26,20 @@ export async function readMarkdown(lang) {
  * @returns {string} - The rendered HTML content.
  */
 export function renderMarkdown(markdownContent) {
+  // Apply markdown-it and plugins
   var md = markdownIt()
     .use(markdownItAttrs)
     .use(markdownItAnchor, {
       slugify: (s) =>
         encodeURIComponent(String(s).trim().toLowerCase().replace(/\s+/g, "-")),
     })
-    .use(plugins.section("h2", "section", "h3", "subsection"))
-    .use(plugins.fontAwesome);
+    .use(mdPlugin.section("h2", "section", "h3", "subsection"))
+    .use(mdPlugin.fontAwesome);
 
-  let htmlContent = md.render(markdownContent);
+  // Apply HTML Plugins to output
+  let html = md.render(markdownContent);
+  html = htmlPlugin.wrapTimelineMeta(html);
+  html = htmlPlugin.wrapCardBody(html);
 
-  return wrapTimelineMeta(htmlContent);
-}
-
-function wrapTimelineMeta(htmlContent) {
-  const load = cheerio.load;
-  const $ = load(htmlContent);
-  $(".timeline .subsection").each(function () {
-    const $this = $(this);
-    const $h3 = $this.find("h3");
-    let $ul = $this.find("ul:has(.place), ul:has(.time)");
-    const $wrapper = $('<div class="timeline-meta"></div>');
-    $wrapper.append($h3);
-    if ($ul.length > 0) {
-      $wrapper.append($ul);
-    }
-    $this.append($wrapper);
-  });
-
-  return $.html();
+  return html;
 }

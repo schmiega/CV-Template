@@ -1,0 +1,47 @@
+.section.cards .card {
+  @extend .col-sm-12, .col-md-6, .col-xl-4, .col-xxl-3;
+  // @extend .col-auto;
+  // max-width: clamp(min-content, 20em, 20em);
+  min-width: min-content;
+  max-width: min(30em, 100%);
+}
+
+.section.skills .card {
+  @extend .col-sm-12, .col-md-4, .col-lg-3, .col-xl-2, .col-xxl-2;
+  // @extend .col-auto;
+  // max-width: clamp(min-content, 20em, 20em);
+  min-width: min-content;
+  //   max-width: min(30em, 100%);
+}
+
+.section.cards,
+.section.skills {
+  .row {
+    --gap: 0.5rem;
+    @media screen and (max-width: 768px) {
+      --gap: 0.25rem;
+    }
+    gap: var(--gap);
+  }
+
+  .card {
+    overflow-wrap: break-word;
+    @media screen and (max-width: 576px) {
+      max-width: unset;
+      width: min(fit-content, 100%);
+    }
+    flex: 0 0 auto; /* Reduce unneccessary shrinking */
+  }
+
+  h4,
+  h5,
+  h6 {
+    @extend .card-title;
+  }
+
+  p,
+  ul,
+  ol {
+    @extend .card-text;
+  }
+}

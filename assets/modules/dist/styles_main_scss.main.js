@@ -14,7 +14,7 @@
   \********************************************************************************************************/
 /***/ (() => {
 
-eval("throw new Error(\"Module build failed (from ./node_modules/sass-loader/dist/cjs.js):\\nThe target selector was not found.\\nUse \\\"@extend .thumbnail !optional\\\" to avoid this error.\\n   ╷\\n35 │     @extend .thumbnail;\\n   │     ^^^^^^^^^^^^^^^^^^\\n   ╵\\n  ../styles/timeline.scss 35:5  root stylesheet\");\n\n//# sourceURL=webpack:///../styles/main.scss?./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js");
+eval("throw new Error(\"Module build failed (from ./node_modules/sass-loader/dist/cjs.js):\\ncomplex selectors may not be extended.\\n   ╷\\n13 │   @extend .col-sm-12 .col-md-4, .col-lg-3, .col-xl-2, .col-xxl-2;\\n   │           ^^^^^^^^^^^^^^^^^^^^\\n   ╵\\n  ../styles/cards.scss 13:11  @import\\n  ../styles/main.scss 5:9     root stylesheet\");\n\n//# sourceURL=webpack:///../styles/main.scss?./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js");
 
 /***/ }),
 

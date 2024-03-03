@@ -1,11 +1,18 @@
+@import "../modules/node_modules/bootstrap/scss/bootstrap";
 @import "bootstrap_custom";
 @import "left-panel";
 @import "timeline";
+@import "cards";
 
 @media print {
   button {
     display: none !important;
   }
+}
+
+.hide,
+.hidden {
+  display: none;
 }
 
 h1::before,
@@ -17,6 +24,11 @@ h6::before {
   margin-right: 0.5em;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   letter-spacing: -0.02em;
 }

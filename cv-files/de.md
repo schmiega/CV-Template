@@ -1,3 +1,5 @@
+# Adrian Schmieg - CV { .hide }
+
 ## :fa-building: Berufserfahrung { .timeline }
 
 ### Access Microfinance Holding AG

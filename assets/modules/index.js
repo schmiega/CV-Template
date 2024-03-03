@@ -12,6 +12,10 @@ import("mdb-ui-kit/css/mdb.min.css");
 import("bootstrap/dist/js/bootstrap.bundle.min.js");
 import("mdb-ui-kit/js/mdb.es.min.js");
 
+// Import other JS modules
+import("jquery");
+import("jquery-circle-progress");
+
 // Get language from URL
 var url = new URL(window.location.href);
 var lang = url.searchParams.get("lang");
