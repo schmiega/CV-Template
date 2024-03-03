@@ -19,6 +19,7 @@ export function wrapTimelineMeta(html) {
 
 export function wrapCardBody(html) {
   const $ = load(html);
+  let isSkills = false;
 
   // Add a grid to cards and skills sections
   const sections = $(".cards, .skills");
