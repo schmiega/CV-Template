@@ -2,7 +2,7 @@
 import { readMarkdown, renderMarkdown } from "./custom/reader.js";
 import { createLangMenu, createNav } from "./custom/nav.js";
 import { displayName, displayProfile } from "./custom/profile.js";
-import ProgressBar from "progressbar.js";
+// import ProgressBar from "progressbar";
 
 // Import custom styles
 import("../styles/main.scss");

@@ -1,0 +1,10 @@
+{
+  "name": "Jane Blubb",
+  "birthdate": "01.01.1990",
+  "residence": "Berlin, Germany",
+  "email": "me@example.com",
+  "phone": "+49 170 123456",
+  "title": "Master of Disaster",
+  "website": "www.example.com",
+  "linkedin": "www.linkedin.com/in/john"
+}

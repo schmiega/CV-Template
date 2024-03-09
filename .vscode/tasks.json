@@ -12,6 +12,13 @@
       "problemMatcher": [],
       "label": "npm: build - assets/modules",
       "detail": "webpack"
+    },
+    {
+      "type": "process",
+      "command": "npx tailwindcss -i assets/styles/main.css -o assets/styles/main.css",
+      "problemMatcher": [],
+      "label": "tailwindcss: assets/styles/main.css",
+      "detail": "tailwindcss"
     }
   ]
 }
