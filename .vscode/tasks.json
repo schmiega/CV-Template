@@ -1,24 +1,16 @@
 {
-  "version": "2.0.0",
-  "tasks": [
-    {
-      "type": "npm",
-      "script": "build",
-      "path": "assets/modules",
-      "group": {
-        "kind": "build",
-        "isDefault": true
-      },
-      "problemMatcher": [],
-      "label": "npm: build - assets/modules",
-      "detail": "webpack"
-    },
-    {
-      "type": "process",
-      "command": "npx tailwindcss -i assets/styles/main.css -o assets/styles/main.css",
-      "problemMatcher": [],
-      "label": "tailwindcss: assets/styles/main.css",
-      "detail": "tailwindcss"
-    }
-  ]
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "build",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"problemMatcher": [],
+			"label": "npm: build",
+			"detail": "npx tailwindcss -i ./src/index.css -o ./dist/index.css"
+		}
+	]
 }
